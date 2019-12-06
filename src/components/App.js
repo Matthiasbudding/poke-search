@@ -4,6 +4,8 @@ import FindPokemon from './FindPokemon'
 import Pokemon from './Pokemon'
 import eevee from '../eevee.json'
 
+const API_URL = "https://pokeapi.co/api/v2/pokemon"
+
 class App extends React.Component {
 
   constructor(props) {
@@ -11,6 +13,15 @@ class App extends React.Component {
     this.state = {
       activePokemon: eevee
     }
+  }
+
+  searchPokemon (event) {
+    const query = event.target.value
+    fetch(`${API_URL}/${query}`)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({activePokemon: data})
+    })
   }
 
   render () {

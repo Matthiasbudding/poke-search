@@ -3,7 +3,6 @@ import './PokemonStatBlock.css'
 
 export default function PokemonStatBlock (props) {
   return <>
-    <h1>{props.pokemon.name}</h1>
     <table>
       <thead>
         <tr>
