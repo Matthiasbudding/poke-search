@@ -3,6 +3,6 @@ import './FindPokemon.css'
 
 export default function FindPokemon (props) {
   return <>
-    <input onChange={props.onChange} />
+    <input value={props.value} onChange={props.onChange} />
   </>
 }
