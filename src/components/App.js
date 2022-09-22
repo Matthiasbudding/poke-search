@@ -23,14 +23,15 @@ class App extends React.Component {
   searchPokemon (query) {
     this.setState({query: query})
     fetch(`${API_URL}/${query}`)
-    .then(response => response.json())
-    .then(data => {
-      this.setState({
-        activePokemon: data,
-        history: uniq(this.state.history.concat(query))
-      })
-    })
+      .then(response => response.json())
+      .then(data => this.setState((state) => ({
+          activePokemon: data,
+          history: uniq([...state.history, query])
+        })
+      ))
   }
+
+  
 
   render () {
     console.log(this.state.activePokemon)
