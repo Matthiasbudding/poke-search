@@ -12,6 +12,7 @@ function App() {
 
   useEffect(() => {
     if (query) {
+      console.log(query);
       fetch(`${API_URL}/${query}`)
         .then((response) => response.json())
         .then((data) => {
