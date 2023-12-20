@@ -12,7 +12,9 @@ export default function FindPokemon(props) {
 
   return (
     <>
-      <input onChange={onChange} />
+      <label>
+        Search: <input name="search" onChange={onChange} />
+      </label>
     </>
   );
 }
