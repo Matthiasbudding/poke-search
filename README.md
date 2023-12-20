@@ -1,8 +1,37 @@
-# React + Vite
+# React Testing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Volg de [guide](https://jestjs.io/docs/tutorial-react)
+- `babel.config.js` werkt niet, hernoem naar `babel.config.cjs`
+- `.css` doet het niet. Mocken!
 
-Currently, two official plugins are available:
+```json
+// in package.json
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+{
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+    }
+  }
+}
+```
+
+- Test environment: [jsdom](https://stackoverflow.com/questions/69227566/consider-using-the-jsdom-test-environment)
+
+## fetch mocken!
+
+In App.test.js
+
+```js
+import eevee from "../eevee.json";
+
+global.fetch = jest.fn().mockImplementation(() =>
+  Promise.resolve({
+    ok: true,
+    json: () => eevee,
+  })
+);
+```
+
+uit [mock-fetch-jest](https://www.leighhalliday.com/mock-fetch-jest)
