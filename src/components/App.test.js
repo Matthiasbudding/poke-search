@@ -1,17 +1,22 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import { cleanup, fireEvent, render } from "@testing-library/react";
+
 import App from "./App";
-import eevee from "../eevee.json";
+import bulbasaur from "../__mocks__/bulbasaur.json";
+import { afterEach } from "node:test";
 
 global.fetch = jest.fn().mockImplementation(() =>
   Promise.resolve({
     ok: true,
-    json: () => eevee,
+    json: () => bulbasaur,
   })
 );
 
+afterEach(cleanup);
+
 it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  render(<App />);
+});
+
+it("", () => {
+  render(<App />);
 });
