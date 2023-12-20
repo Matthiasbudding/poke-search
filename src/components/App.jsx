@@ -11,11 +11,13 @@ function App() {
   const [activePokemon, setActivePokemon] = useState(eevee);
 
   useEffect(() => {
-    fetch(`${API_URL}/${query}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setActivePokemon(data);
-      });
+    if (query) {
+      fetch(`${API_URL}/${query}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setActivePokemon(data);
+        });
+    }
   }, [query]);
 
   return (
