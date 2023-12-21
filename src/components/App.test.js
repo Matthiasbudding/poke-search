@@ -1,4 +1,4 @@
-import { cleanup, render } from "@testing-library/react";
+import { cleanup, render, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
 
@@ -22,12 +22,14 @@ it("App: changes data after input change", async () => {
   const user = userEvent.setup();
   const { getByRole, getByLabelText } = render(<App />);
 
-  // ACT
-  const input = getByLabelText(/search/i);
-  const expectedResult = "pikachu";
+  await act(async () => {
+    // ACT
+    const input = getByLabelText(/search/i);
+    const expectedResult = "pikachu";
 
-  await user.type(input, expectedResult);
-  await new Promise((r) => setTimeout(r, 600));
+    await user.type(input, expectedResult);
+    await new Promise((r) => setTimeout(r, 600));
+  });
 
   // ASSERT
   const h1 = getByRole("heading", { level: 1 });
